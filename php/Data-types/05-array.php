@@ -2,6 +2,7 @@
 // String array
 // Indexed Array
 $fruits = array("Apple", "Orange", "Watermelon");
+
 // index point; 0, 1, 2, 3
 
 // $numArrayOne = array(1, 2, 3); // array();
@@ -35,7 +36,7 @@ $cars = array (
 
 // var_dump($fruits[0]);
 // var_dump($color_codes["Blue"]); // call array key
-var_dump($cars[0]) . '</br>';
+// var_dump($cars[0]) . '</br>';
 // var_dump($cars[1][0]) . '</br>';
 
 // var_dump($cars[2]["Red"]) . '</br>';
