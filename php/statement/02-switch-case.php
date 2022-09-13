@@ -17,7 +17,7 @@
 $d = date("D"); // Wed;
 $d = "Frifefefe";
 
-switch($d) {
+switch ($d) {
     case "Mon":
         echo "Today is Monday!";
         break;
@@ -32,7 +32,7 @@ switch($d) {
         break;
     case "Fri":
         echo "Today is Fri!";
-            break;
+        break;
     case "Sat":
         echo "Today is Sat!";
         break;
