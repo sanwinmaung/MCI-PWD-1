@@ -1,0 +1,19 @@
+- class, this
+$this->   // Scope
+
+Access Modifiers
+
+
+- public, private, protected 
+- getter, setter (encapsulation)
+- constructor, destructor
+    Dependency Injection
+        - dependency similar coupling 
+        - loosely , tightly  
+        - concrete class
+
+
+// MySql
+    - workbench, phpmyadmin (Client)
+    - command line interface (cli)
+

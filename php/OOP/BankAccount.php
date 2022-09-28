@@ -39,6 +39,7 @@ $accountOne->balance = 3000;
 
 // $object->method(arguments)
 $accountOne->deposit(1000);
+echo $accountOne->balance; // 4000
 
 // echo $accountOne->showBalance();
 
