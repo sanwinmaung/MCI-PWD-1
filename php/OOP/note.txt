@@ -1,3 +1,9 @@
+OOP Main Features
+==================
+    1. Encapsulation
+    2. Inheritance
+    3. Polymorphism
+
 - class, this
 $this->   // Scope
 

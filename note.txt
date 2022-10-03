@@ -1,0 +1,18 @@
+Our Technology Stack
+==========================
+Frontend
+ - HTML
+ - CSS
+ - Boostrap
+ - JavaScript
+ - JQuery
+
+Backend
+ - php
+ - Laravel (PHP framework)
+ - Api
+
+Database
+ - MySql
+
+
