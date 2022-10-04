@@ -1,0 +1,1 @@
+*** https://ashallendesign.co.uk/blog/interfaces-vs-abstract-classes-in-php
