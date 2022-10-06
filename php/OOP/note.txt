@@ -4,6 +4,24 @@ OOP Main Features
     2. Inheritance
     3. Polymorphism
 
+Trait
+=========
+Traits allow you to reuse various methods freely in many different classes that do not need to be in the same class hierarchy.
+
+Static methods & properties
+============================
+
+Magic methods
+================
+
+Anonymose Class
+================
+
+Namespace
+===========
+
+Inheritance - to enable code reuse in different classes with the same inheritance hierarchy.
+
 - class, this
 $this->   // Scope
 
