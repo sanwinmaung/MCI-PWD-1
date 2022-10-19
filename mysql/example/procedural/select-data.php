@@ -2,8 +2,8 @@
 
 require_once("../db/db_procedural_connection.php");
 
-// $sql = "SELECT * FROM students";
-$sql = "SELECT id, name, father_name, email FROM students";
+$sql = "SELECT * FROM students ORDER BY id DESC LIMIT 2 OFFSET 0";
+// $sql = "SELECT id, name, father_name, email FROM students";
 
 $result = mysqli_query($conn, $sql);
 
