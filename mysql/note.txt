@@ -1,0 +1,10 @@
+Database
+-----------
+    - relational database (rdbms) 
+        mysql
+
+PHP + MySQL Database System
+============================
+
+Two connection type 
+    - MySQLi or PDO

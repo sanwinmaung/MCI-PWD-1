@@ -1,0 +1,9 @@
+What is polymorphism?
+
+Polymorphism is a greek word,
+ - poly - မြောက်များစွာ
+ - morph - ပြောင်းလဲအသုံးပြုနိုင်တယ်
+
+polymorphism is closely related to Inheritance
+
+*** Same methods with different implementation.

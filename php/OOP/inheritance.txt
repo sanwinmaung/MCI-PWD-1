@@ -1,0 +1,9 @@
+PHP Inheritance
+
+ - reuse the code from another class
+ - parent class with properties and methods, and a child class can use the code from the parent class.
+ - The parent class is also called a base class or super class. And the child class is also called derived class or a subclass.
+ - extends keyword
+
+
+ 

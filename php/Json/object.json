@@ -1,0 +1,14 @@
+{
+    "book": {
+        "name": "Harry Potter",
+        "author": "J.K. Rowling",
+        "year": 2000,
+        "genre": "Fantasy"
+    },
+    "frits": [
+        "Apple",
+        "Banana",
+        "Strawberry",
+        "Orange"
+    ]
+}
