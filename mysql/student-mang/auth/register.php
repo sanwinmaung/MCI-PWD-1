@@ -1,6 +1,13 @@
 <?php
 
-require_once("./config/db_connection.php");
+session_start();
+
+if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+    header("location: welcome.php");
+    exit;
+}
+
+require_once("../config/db_connection.php");
 
 $username = "";
 $password = "";

@@ -1,0 +1,13 @@
+<?php
+
+$sql .= "CREATE TABLE students (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    father_name VARCHAR(255) NOT NULL,
+    mobile VARCHAR(14) NOT NULL,
+    date_of_birth DATE NULL,
+    email VARCHAR(255) NULL UNIQUE,
+    address VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);";
