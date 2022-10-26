@@ -8,8 +8,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 }
 
 require_once("config/db_connection.php");
-echo mysqli_get_host_info($conn);
 
+// If you already created database, please set $db_exists = true.
 $db_exists = true;
 
 ?>
@@ -46,7 +46,7 @@ $db_exists = true;
 
             <?php
             if (!$db_exists) {
-                echo '<a href="db_structure/create_table.php" class="btn btn-warning">Create Database</a>';
+                echo '<a href="config/create-database.php" class="btn btn-warning">Create Database</a>';
             }
             ?>
         </p>

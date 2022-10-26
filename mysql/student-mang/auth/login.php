@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["username"] = $username;
 
                             // Redirect to login page
-                            header("location: ../welcome.php");
+                            header("location: ../students/index.php");
                         } else {
                             $login_error = "Invalid username or password.";
                         }
