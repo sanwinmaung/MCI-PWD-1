@@ -15,4 +15,13 @@ Backend
 Database
  - MySql
 
+CRUD
+    C - create
+    R - read
+    U - update
+    D - delete
+    one CRUD for one table
+
+
+
 
