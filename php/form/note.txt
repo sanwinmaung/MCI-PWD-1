@@ -1,0 +1,7 @@
+Method List
+
+1. GET
+2. POST
+3. UPDATE
+4. PATCH // similar UPDATE
+5. DELETE

@@ -63,6 +63,7 @@ require_once("../config/db_connection.php");
                                         <th>Mobile</th>
                                         <th>Birthday</th>
                                         <th>Created At</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,6 +81,14 @@ require_once("../config/db_connection.php");
                                         <td><?php echo $row['mobile'] ?></td>
                                         <td><?php echo $row['date_of_birth'] ?></td>
                                         <td><?php echo $row['created_at'] ?></td>
+                                        <td>
+                                            <a href="show.php" class="btn btn-success btn-sm"><i
+                                                    class="fas fa-eye"></i></a>
+                                            <a href="edit.php?id=<?php echo $row['id'] ?>"
+                                                class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
+                                            <a href="edit.php" class="btn btn-danger btn-sm"><i
+                                                    class="fas fa-trash"></i></a>
+                                        </td>
                                     </tr>
                                     <?php
                                             $index_number++;
