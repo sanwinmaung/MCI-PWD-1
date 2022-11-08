@@ -191,7 +191,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <!-- Date -->
                                 <div class="form-group">
-                                    <label for="date_of_birth">Date:</label>
+                                    <label for="date_of_birth">Date of Birth:</label>
                                     <div class="input-group date" id="date_of_birth" data-target-input="nearest">
                                         <input type="text" class="form-control datetimepicker-input"
                                             data-target="#date_of_birth" id="date_of_birth" name="date_of_birth" />
@@ -217,8 +217,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         value="<?php echo $address ?>">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" style="display: flex;justify-content: space-between;">
                                     <button type="submit" class="btn btn-primary">Submit</button>
+                                    <a href="index.php" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </form>
 

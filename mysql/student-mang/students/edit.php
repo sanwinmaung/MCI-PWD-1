@@ -17,32 +17,50 @@ if (!empty($_GET['id'])) {
 
     $id = $_GET['id'];
 
-    $sql = "SELECT id, name, father_name, mobile, date_of_birth, email, address FROM students WHERE id=?";
+    // $sql = "SELECT id, name, father_name, mobile, date_of_birth, email, address FROM students WHERE id=?";
 
-    if ($stmt = mysqli_prepare($conn, $sql)) {
-        mysqli_stmt_bind_param($stmt, "i", $param_id);
+    // if ($stmt = mysqli_prepare($conn, $sql)) {
+    //     mysqli_stmt_bind_param($stmt, "i", $param_id);
 
-        $param_id = $id;
+    //     $param_id = $id;
 
-        if (mysqli_stmt_execute($stmt)) {
-            mysqli_stmt_store_result($stmt);
+    //     if (mysqli_stmt_execute($stmt)) {
+    //         mysqli_stmt_store_result($stmt);
 
-            if (mysqli_stmt_num_rows($stmt) == 1) {
+    //         if (mysqli_stmt_num_rows($stmt) == 1) {
 
-                mysqli_stmt_bind_result($stmt, $id, $name, $father_name, $mobile, $res_date_of_birth, $email, $address);
+    //             mysqli_stmt_bind_result($stmt, $id, $name, $father_name, $mobile, $res_date_of_birth, $email, $address);
 
-                mysqli_stmt_fetch($stmt);
-                $date_of_birth = date("m/d/Y", strtotime($res_date_of_birth));
-            } else {
-                header("location: index.php");
-                exit;
-            }
+    //             mysqli_stmt_fetch($stmt);
+    //             $date_of_birth = date("m/d/Y", strtotime($res_date_of_birth));
+    //         } else {
+    //             header("location: index.php");
+    //             exit;
+    //         }
 
-            // Close statement
-            mysqli_stmt_close($stmt);
-        }
+    //         // Close statement
+    //         mysqli_stmt_close($stmt);
+    //     }
+    // } else {
+    //     echo "Oops! Something wrong. Please try again later.";
+    // }
+
+    $sql = "SELECT * FROM students WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) == 1) {
+
+        $row = mysqli_fetch_assoc($result);
+
+        $name = $row['name'];
+        $father_name = $row['father_name'];
+        $mobile = $row['mobile'];
+        $date_of_birth = date("m/d/Y", strtotime($row['date_of_birth']));
+        $email = $row['email'];
+        $address = $row['address'];
     } else {
-        echo "Oops! Something wrong. Please try again later.";
+        header("location: index.php");
+        exit;
     }
 } else {
     header("location: index.php");
@@ -109,21 +127,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($name_error) && empty($father_name_error) && empty($mobile_error)) {
 
-        $id = $_POST['id'];
-        $sql = "SELECT * FROM students WHERE id=$id";
+        $student_id = $_POST['id'];
+        $sql = "SELECT * FROM students WHERE id=$student_id";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) == 1) {
 
-            // $student = mysqli_fetch_array($result);
-            // echo $student['name'];
-
-            $sql = "UPDATE students SET (name, father_name, mobile, date_of_birth, email, address) VALUES (?, ?, ?, ?, ?, ?) WHERE id = 6";
+            $sql = "UPDATE students SET name=?, father_name=?, mobile=?, date_of_birth=?,  email=?, address=? WHERE id=?";
 
             if ($stmt = mysqli_prepare($conn, $sql)) {
 
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "ssssss", $param_name, $param_father_name, $param_mobile, $param_date_of_birth, $param_email, $param_address);
+                mysqli_stmt_bind_param($stmt, "sssssss", $param_name, $param_father_name, $param_mobile, $param_date_of_birth, $param_email, $param_address, $student_id);
 
                 // Set parameters
                 $param_name = $name;
@@ -242,7 +257,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 <!-- Date -->
                                 <div class="form-group">
-                                    <label for="date_of_birth">Date:</label>
+                                    <label for="date_of_birth">Date of Birth:</label>
                                     <div class="input-group date" id="date_of_birth" data-target-input="nearest">
                                         <input type="text" class="form-control datetimepicker-input"
                                             data-target="#date_of_birth" id="date_of_birth" name="date_of_birth"
@@ -269,8 +284,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         value="<?php echo $address ?>">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" style="display: flex;justify-content: space-between;">
                                     <button type="submit" class="btn btn-primary">Update</button>
+                                    <a href="index.php" class="btn btn-secondary">Cancel</a>
                                 </div>
                             </form>
 

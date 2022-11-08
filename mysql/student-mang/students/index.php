@@ -82,12 +82,18 @@ require_once("../config/db_connection.php");
                                         <td><?php echo $row['date_of_birth'] ?></td>
                                         <td><?php echo $row['created_at'] ?></td>
                                         <td>
-                                            <a href="show.php" class="btn btn-success btn-sm"><i
-                                                    class="fas fa-eye"></i></a>
+                                            <a href="show.php?id=<?php echo $row['id'] ?>"
+                                                class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a>
                                             <a href="edit.php?id=<?php echo $row['id'] ?>"
                                                 class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
-                                            <a href="edit.php" class="btn btn-danger btn-sm"><i
-                                                    class="fas fa-trash"></i></a>
+
+                                            <form action="delete.php" method="POST" class="delete-form"
+                                                style="display: inline;">
+                                                <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                                                <button type="submit" class="btn btn-danger btn-sm"><i
+                                                        class="fas fa-trash"></i></button>
+                                            </form>
+
                                         </td>
                                     </tr>
                                     <?php
@@ -143,6 +149,10 @@ $(function() {
         ]
         // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#table1_wrapper .col-md-6:eq(0)');
+});
+
+$(".delete-form").on("submit", function() {
+    return confirm("Are you sure to delete?");
 });
 </script>
 <?php include_once("../layouts/end-html.php"); ?>
