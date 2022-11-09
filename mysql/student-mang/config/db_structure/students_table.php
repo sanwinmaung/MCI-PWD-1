@@ -1,6 +1,6 @@
 <?php
 
-$sql .= "CREATE TABLE students (
+$sql .= "CREATE TABLE IF NOT EXISTS students (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     father_name VARCHAR(255) NOT NULL,

@@ -4,6 +4,7 @@ require_once("../db_connection.php");
 
 require_once("users_table.php");
 require_once("students_table.php");
+require_once("attandances_table.php");
 
 if (mysqli_multi_query($conn, $sql)) {
     $message = "Tables created successfully!";

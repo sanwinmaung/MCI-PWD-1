@@ -3,7 +3,7 @@
 $hostname = "localhost";
 $username = "root";
 $password = "";
-$dbname = "student_management";
+$dbname = "student_mang";
 
 $conn = mysqli_connect($hostname, $username, $password, $dbname);
 if (!$conn) {

@@ -1,0 +1,40 @@
+Students - 20
+---------
+    - stu 1
+    ....
+    ....
+    ....
+    ....
+    - stu 20
+
+
+Teachers - 5
+--------------
+ - tc 1
+ - tc 2
+ - tc 3
+ - tc 4
+ - tc 5
+
+Committees - 10
+-----------------
+    - students - 8 (stu 1 , to , stu 8)
+    - teachers - 2 (tc 1, tc 2)
+
+
+Inner Join
+    table 1 - students / table 1 - teachers
+    table 2 - committes
+    result - 8 (from students) - students + committes (8)
+    result - 2 (from teachers) - teachers + committes (2)
+
+Left Join
+    table 1 - students / table 1 - teachers
+    table 2 - committes
+    result - 20 (from students) - (students + committes = (8)) + (students (12))
+    result - 5 (from teachers) - (teachers + committes (2)) + (teachers (3))
+
+Right Join
+    table 1 - students / table 1 - teachers
+    table 2 - committes
+    result - 10 (from committes) - (students + committes = (8)) + (teachers + committes (2))
