@@ -45,9 +45,9 @@ $db_exists = true;
             <a href="auth/register.php" class="btn btn-info">Sign Up</a>
 
             <?php
-            if (!$db_exists) {
-                echo '<a href="config/create-database.php" class="btn btn-warning">Create Database</a>';
-            }
+            // if (!$db_exists) {
+            echo '<a href="config/create-database.php" class="btn btn-warning">Create Database</a>';
+            // }
             ?>
         </p>
     </div>

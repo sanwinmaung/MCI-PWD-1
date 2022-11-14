@@ -53,13 +53,37 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="../gallery.html" class="nav-link">
                         <i class="nav-icon far fa-image"></i>
                         <p>
                             Student
                         </p>
                     </a>
+                </li> -->
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-clipboard"></i>
+                        <p>
+                            Attandances
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../attandances/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Attandances</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../attandances/create-step-one.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Attandance</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="nav-item">
