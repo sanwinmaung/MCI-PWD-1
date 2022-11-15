@@ -79,7 +79,7 @@ require_once("../config/db_connection.php");
                                         <td><?php echo $row['name'] ?></td>
                                         <td><?php echo $row['father_name'] ?></td>
                                         <td><?php echo $row['mobile'] ?></td>
-                                        <td><?php echo $row['date_of_birth'] ?></td>
+                                        <td><?php echo date("d M Y", strtotime($row['date_of_birth'])) ?></td>
                                         <td><?php echo $row['created_at'] ?></td>
                                         <td>
                                             <a href="show.php?id=<?php echo $row['id'] ?>"

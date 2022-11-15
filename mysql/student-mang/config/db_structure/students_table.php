@@ -6,6 +6,7 @@ $sql .= "CREATE TABLE IF NOT EXISTS students (
     father_name VARCHAR(255) NOT NULL,
     mobile VARCHAR(14) NOT NULL,
     date_of_birth DATE NULL,
+    class_id INT(11) NOT NULL,
     email VARCHAR(255) NULL UNIQUE,
     address VARCHAR(255) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
