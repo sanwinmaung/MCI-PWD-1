@@ -56,6 +56,7 @@ if (!empty($_GET['id'])) {
         $father_name = $row['father_name'];
         $mobile = $row['mobile'];
         $date_of_birth = date("m/d/Y", strtotime($row['date_of_birth']));
+        $class_id = $row['class_id'];
         $email = $row['email'];
         $address = $row['address'];
     } else {
@@ -91,6 +92,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty(trim($_POST["date_of_birth"]))) {
         $date_of_birth = trim($_POST["date_of_birth"]);
+    }
+
+    if (empty(trim($_POST["class_id"]))) {
+        $class_id_error = "Please select class.";
+    } else {
+        $class_id = trim($_POST["class_id"]);
     }
 
     if (!empty(trim($_POST["email"]))) {
@@ -133,18 +140,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if (mysqli_num_rows($result) == 1) {
 
-            $sql = "UPDATE students SET name=?, father_name=?, mobile=?, date_of_birth=?,  email=?, address=? WHERE id=?";
+            $sql = "UPDATE students SET name=?, father_name=?, mobile=?, date_of_birth=?, class_id=?, email=?, address=? WHERE id=?";
 
             if ($stmt = mysqli_prepare($conn, $sql)) {
 
                 // Bind variables to the prepared statement as parameters
-                mysqli_stmt_bind_param($stmt, "sssssss", $param_name, $param_father_name, $param_mobile, $param_date_of_birth, $param_email, $param_address, $student_id);
+                mysqli_stmt_bind_param($stmt, "ssssssss", $param_name, $param_father_name, $param_mobile, $param_date_of_birth, $param_class_id, $param_email, $param_address, $student_id);
 
                 // Set parameters
                 $param_name = $name;
                 $param_father_name = $father_name;
                 $param_mobile = $mobile;
                 $param_date_of_birth = date("Y-m-d", strtotime($date_of_birth));
+                $param_class_id = $class_id;
                 $param_email = $email;
                 $param_address = $address;
 
@@ -267,6 +275,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="class_id">Class <span class="danger-color">*</span> :</label>
+                                    <select
+                                        class="form-control <?php echo (!empty($class_id_error)) ? 'is-invalid' : '' ?>"
+                                        id="class_id" name="class_id" required>
+                                        <option value="" selected disabled>Choose Class</option>
+
+                                        <?php
+                                        $sql = "SELECT id, title FROM classes";
+                                        $result = mysqli_query($conn, $sql);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                        <option value="<?php echo $row['id'] ?>"
+                                            <?php echo $class_id == $row['id'] ? 'selected' : '' ?>>
+                                            <?php echo $row['title'] ?></option>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+
+                                    <span class="invalid-feedback"><?php echo $class_id_error ?></span>
                                 </div>
 
                                 <div class="form-group">

@@ -133,7 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $sql = "SELECT id, name, father_name FROM students WHERE class_id=$class_id";
                                         $result = mysqli_query($conn, $sql);
                                         if (mysqli_num_rows($result) > 0) {
-                                            $index_number = 1;
                                             while ($row = mysqli_fetch_assoc($result)) {
                                         ?>
                                         <option value="<?php echo $row['id'] ?>">

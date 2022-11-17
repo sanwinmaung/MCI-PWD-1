@@ -9,9 +9,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 require_once("../config/db_connection.php");
 
-$name = $father_name = $mobile = $date_of_birth = $email = $address = "";
+$name = $father_name = $mobile = $date_of_birth = $class_id = $email = $address = "";
 
-$name_error = $father_name_error = $mobile_error = $email_error = "";
+$name_error = $father_name_error = $mobile_error = $class_id_error = $email_error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -37,6 +37,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (!empty(trim($_POST["date_of_birth"]))) {
         $date_of_birth = trim($_POST["date_of_birth"]);
+    }
+
+    if (empty(trim($_POST["class_id"]))) {
+        $class_id_error = "Please select class.";
+    } else {
+        $class_id = trim($_POST["class_id"]);
     }
 
     if (!empty(trim($_POST["email"]))) {
@@ -73,18 +79,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($name_error) && empty($father_name_error) && empty($mobile_error)) {
 
-        $sql = "INSERT INTO students (name, father_name, mobile, date_of_birth, email, address) VALUES (?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO students (name, father_name, mobile, date_of_birth, class_id, email, address) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($conn, $sql)) {
 
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssss", $param_name, $param_father_name, $param_mobile, $param_date_of_birth, $param_email, $param_address);
+            mysqli_stmt_bind_param($stmt, "sssssss", $param_name, $param_father_name, $param_mobile, $param_date_of_birth, $param_class_id, $param_email, $param_address);
 
             // Set parameters
             $param_name = $name;
             $param_father_name = $father_name;
             $param_mobile = $mobile;
             $param_date_of_birth = date("Y-m-d", strtotime($date_of_birth));
+            $param_class_id = $class_id;
             $param_email = $email;
             $param_address = $address;
 
@@ -200,6 +207,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="class_id">Class <span class="danger-color">*</span> :</label>
+                                    <select
+                                        class="form-control <?php echo (!empty($class_id_error)) ? 'is-invalid' : '' ?>"
+                                        id="class_id" name="class_id" required>
+                                        <option value="" selected disabled>Choose Class</option>
+
+                                        <?php
+                                        $sql = "SELECT id, title FROM classes";
+                                        $result = mysqli_query($conn, $sql);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                        ?>
+                                        <option value="<?php echo $row['id'] ?>">
+                                            <?php echo $row['title'] ?></option>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </select>
+
+                                    <span class="invalid-feedback"><?php echo $class_id_error ?></span>
                                 </div>
 
                                 <div class="form-group">

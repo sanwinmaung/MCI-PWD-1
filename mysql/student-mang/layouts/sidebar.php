@@ -111,6 +111,30 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-layer-group"></i>
+                        <p>
+                            Classes
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="../classes/index.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Classes</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../classes/create.php" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add New Class</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item">
                     <a href="../auth/logout.php" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>

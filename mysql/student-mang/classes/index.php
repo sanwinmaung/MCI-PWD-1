@@ -30,12 +30,12 @@ require_once("../config/db_connection.php");
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Attandances List</h1>
+                    <h1>Classes List</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Attandances List</li>
+                        <li class="breadcrumb-item active">Classes List</li>
                     </ol>
                 </div>
             </div>
@@ -49,36 +49,8 @@ require_once("../config/db_connection.php");
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header" style="display: inline;">
-                            <h3 class="card-title">Attandances management area</h3>
-
-                            <a href="create-step-one.php" class="btn btn-primary"
-                                style="float: right;margin-left: 10px;">Add New
-                                Attandance</a>
-
-                            <div class="dropdown" style="float: right;">
-                                <a class="btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                    Classes List
-                                </a>
-
-                                <div class="dropdown-menu">
-                                    <?php
-                                    $sql = "SELECT * FROM classes";
-                                    $result = mysqli_query($conn, $sql);
-                                    if (mysqli_num_rows($result) > 0) {
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                    ?>
-                                    <a class="dropdown-item"
-                                        href="index.php?class_id=<?php echo $row['id'] ?>"><?php echo $row['title'] ?></a>
-
-                                    <?php
-                                        }
-                                    }
-                                    ?>
-                                </div>
-                            </div>
-
-
+                            <h3 class="card-title">Classes management area</h3>
+                            <a href="create.php" class="btn btn-primary" style="float: right;">Add New Class</a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -86,40 +58,14 @@ require_once("../config/db_connection.php");
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>Date</th>
-                                        <th>Student Name</th>
-                                        <th>Father Name</th>
-                                        <th>Class</th>
-                                        <th>Status</th>
+                                        <th>Name</th>
                                         <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $sql = "SELECT 
-                                                a.id,
-                                                a.date,
-                                                a.status,
-                                                a.student_id,
-                                                a.class_id,
-                                                a.created_at,
-                                                s.name,
-                                                s.father_name,
-                                                c.title class_title
-                                            FROM
-                                                attandances a
-                                            LEFT JOIN students s ON s.id = a.student_id
-                                            LEFT JOIN classes c ON c.id = a.class_id
-                                        ";
-
-                                    if (!empty($_GET['class_id'])) {
-                                        $filter_class_id = $_GET['class_id'];
-                                        $sql .= " WHERE a.class_id=$filter_class_id";
-                                    }
-
-                                    $sql .= " ORDER BY created_at DESC";
-
+                                    $sql = "SELECT * FROM classes ORDER BY created_at DESC";
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
                                         $index_number = 1;
@@ -127,33 +73,10 @@ require_once("../config/db_connection.php");
                                     ?>
                                     <tr>
                                         <td><?php echo $index_number ?></td>
-                                        <td><?php echo date("d/m/Y", strtotime($row['date'])) ?></td>
-                                        <td><a
-                                                href="../students/show.php?id=<?php echo $row['student_id'] ?>"><?php echo $row['name'] ?></a>
-                                        </td>
-                                        <td><a
-                                                href="../students/show.php?id=<?php echo $row['student_id'] ?>"><?php echo $row['father_name'] ?></a>
-                                        </td>
-                                        <td><?php echo $row['class_title'] ?></td>
-                                        <?php
-                                                if ($row['status'] == 'present') {
-                                                    $status_color = 'success';
-                                                } elseif ($row['status'] == 'leave') {
-                                                    $status_color = 'warning';
-                                                } else {
-                                                    $status_color = 'danger';
-                                                }
-                                                ?>
-                                        <td>
-                                            <span class="badge badge-<?php echo $status_color ?>">
-                                                <?php echo ucfirst($row['status']) ?>
-                                            </span>
-                                        </td>
+                                        <td><?php echo $row['title'] ?></td>
                                         <td><?php echo $row['created_at'] ?></td>
                                         <td>
-                                            <!-- <a href="show.php?id=<?php echo $row['id'] ?>"
-                                                class="btn btn-success btn-sm"><i class="fas fa-eye"></i></a> -->
-                                            <a href="edit.php?id=<?php echo $row['id'] ?>&class_id=<?php echo $row['class_id'] ?>"
+                                            <a href="edit.php?id=<?php echo $row['id'] ?>"
                                                 class="btn btn-info btn-sm"><i class="fas fa-edit"></i></a>
 
                                             <form action="delete.php" method="POST" class="delete-form"
@@ -214,8 +137,9 @@ $(function() {
         "lengthChange": false,
         "autoWidth": false,
         "order": [
-            [6, 'desc']
+            [2, 'desc']
         ]
+        // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#table1_wrapper .col-md-6:eq(0)');
 });
 
